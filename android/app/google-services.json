@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "451586811153",
+    "firebase_url": "https://real-chat-flutter.firebaseio.com",
+    "project_id": "real-chat-flutter",
+    "storage_bucket": "real-chat-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451586811153:android:b770e62e635955d5ce98b0",
+        "android_client_info": {
+          "package_name": "com.example.realchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "451586811153-pdpt09iaafji325nv4b4qdevdgujs0b5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBv4XZJseedaVZm-e9qrDAasSkQazAHpXY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "451586811153-pdpt09iaafji325nv4b4qdevdgujs0b5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
