@@ -1,11 +1,18 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:realchat/widgets/pickers/user_image_picker.dart';
 
 class AuthForm extends StatefulWidget {
   bool isLoading;
-  final void Function(String email, String password, String username,
-      bool isLogin, BuildContext ctx) submitFn;
-
+  final void Function(
+    String email,
+    String password,
+    String username,
+    File pickedImage,
+    bool isLogin,
+    BuildContext ctx,
+  ) submitFn;
   AuthForm(this.submitFn, this.isLoading);
   @override
   _AuthFormState createState() => _AuthFormState();
@@ -17,16 +24,31 @@ class _AuthFormState extends State<AuthForm> {
   var _userEmail = '';
   var _userName = '';
   var _userPassword = '';
+  File pickedImage;
+
+  _imagePicked(File image) {
+    pickedImage = image;
+  }
 
   void _trySubmit() {
     final isValid = _formKey.currentState.validate();
     FocusScope.of(context).unfocus();
+    if (pickedImage == null && !_isLogin) {
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Pick an image'),
+          backgroundColor: Theme.of(context).errorColor,
+        ),
+      );
+      return;
+    }
     if (isValid) {
       _formKey.currentState.save();
       widget.submitFn(
         _userEmail.trim(),
         _userPassword,
         _userName.trim(),
+        pickedImage,
         _isLogin,
         context,
       );
@@ -46,7 +68,7 @@ class _AuthFormState extends State<AuthForm> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  if (!_isLogin) UserImagePicker(),
+                  if (!_isLogin) UserImagePicker(_imagePicked),
                   TextFormField(
                     key: ValueKey('email'),
                     validator: (value) {
