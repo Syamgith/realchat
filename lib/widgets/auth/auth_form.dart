@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:realchat/widgets/pickers/user_image_picker.dart';
 
 class AuthForm extends StatefulWidget {
   bool isLoading;
@@ -45,6 +46,7 @@ class _AuthFormState extends State<AuthForm> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  if (!_isLogin) UserImagePicker(),
                   TextFormField(
                     key: ValueKey('email'),
                     validator: (value) {
@@ -65,8 +67,8 @@ class _AuthFormState extends State<AuthForm> {
                     TextFormField(
                       key: ValueKey('username'),
                       validator: (value) {
-                        if (value.isEmpty || value.length < 6) {
-                          return 'Please enter atleast 6 characters.';
+                        if (value.isEmpty || value.length < 4) {
+                          return 'Please enter atleast 4 characters.';
                         }
                         return null;
                       },
