@@ -70,6 +70,9 @@ class _AuthFormState extends State<AuthForm> {
                 children: [
                   if (!_isLogin) UserImagePicker(_imagePicked),
                   TextFormField(
+                    autocorrect: false,
+                    enableSuggestions: false,
+                    textCapitalization: TextCapitalization.none,
                     key: ValueKey('email'),
                     validator: (value) {
                       if (value.isEmpty || !value.contains('@')) {
@@ -88,6 +91,9 @@ class _AuthFormState extends State<AuthForm> {
                   if (!_isLogin)
                     TextFormField(
                       key: ValueKey('username'),
+                      autocorrect: true,
+                      enableSuggestions: false,
+                      textCapitalization: TextCapitalization.words,
                       validator: (value) {
                         if (value.isEmpty || value.length < 4) {
                           return 'Please enter atleast 4 characters.';
